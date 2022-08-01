@@ -1,6 +1,5 @@
 import Nav from "./components/nav";
 import SchedulerPage from "./components/schedulerPage";
-// import { Route, Switch } from "react-router-dom"
 
 function App() {
   return (
