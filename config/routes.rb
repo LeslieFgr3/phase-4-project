@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :tasks
   resources :schedulers
   
-  get "/login", to: "session#create"
+  post "/login", to: "sessions#create"
+  get "/user", to:"users#show"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

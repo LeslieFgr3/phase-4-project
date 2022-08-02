@@ -1,6 +1,6 @@
-import { Input } from "@mui/material";
+//import { Input } from "@mui/material";
 import React, {useState} from "react";
-import  FormField  from "../styles/FormField";
+
 
 
 
@@ -15,7 +15,7 @@ function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
     fetch("/login", {
-        methog: "POST",
+        methog: "GET",
         headers: {
             "Content-Type": "application/json",
         },
@@ -34,8 +34,9 @@ function handleSubmit(event) {
 return (
     <form onSubmit={handleSubmit}>
        
-        <label htmlFor="Username">Username</label>
-        <input
+        <label classname ="usernameLabel"  htmlFor="Username">Username</label>
+        
+        <input 
         type="text"
         id="username"
         autoComplete="off"
@@ -44,8 +45,19 @@ return (
         />
        
        
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      
+
+       
         <button variant="fill" color="primary" type="submit">
-            {isLoading ? "Loading..." : "Login"}
+            {"Login"}
         </button>
        
       
