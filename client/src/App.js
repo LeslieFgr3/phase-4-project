@@ -1,13 +1,10 @@
-import Nav from "./components/nav";
-import SchedulerPage from "./components/schedulerPage";
+import React from "react"
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <Nav />
-      </header>
-      <SchedulerPage />
+    <div>
+      <h1> hello world</h1>
     </div>
   );
 }
