@@ -280,4 +280,12 @@ export const tasks = [
     id: 39,
     location: "Room 1",
   },
+  {
+    title: "testing ",
+    startDate: new Date(2022, 8, 1),
+    endDate: new Date(2022, 8, 2),
+    allDay: true,
+    id: 40,
+    location: "Room 1",
+  },
 ];

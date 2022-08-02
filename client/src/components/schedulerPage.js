@@ -297,7 +297,7 @@ export default class SchedulerPage extends React.PureComponent {
     super(props);
     this.state = {
       data: tasks,
-      currentDate: "2018-06-27",
+      currentDate: new Date(),
       confirmationVisible: false,
       editingFormVisible: false,
       deletedAppointmentId: undefined,
@@ -403,10 +403,20 @@ export default class SchedulerPage extends React.PureComponent {
   commitChanges({ added, changed, deleted }) {
     this.setState((state) => {
       let { data } = state;
+      console.log(data);
       if (added) {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
+        fetch("http://localhost:3000", {
+          method: "POST",
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify(added),
+        }).then((res) => {
+          if (res.ok) {
+            res.json().then((added) => console.log(added));
+          }
+        });
       }
       if (changed) {
         data = data.map((appointment) =>
@@ -414,10 +424,12 @@ export default class SchedulerPage extends React.PureComponent {
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
+        console.log(changed);
       }
       if (deleted !== undefined) {
         this.setDeletedAppointmentId(deleted);
         this.toggleConfirmationVisible();
+        console.log(deleted);
       }
       return { data, addedAppointment: {} };
     });
