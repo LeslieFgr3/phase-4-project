@@ -408,7 +408,15 @@ export default class SchedulerPage extends React.PureComponent {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
-        console.log(added);
+        fetch("http://localhost:3000", {
+          method: "POST",
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify(added),
+        }).then((res) => {
+          if (res.ok) {
+            res.json().then((added) => console.log(added));
+          }
+        });
       }
       if (changed) {
         data = data.map((appointment) =>
